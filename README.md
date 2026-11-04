@@ -2,24 +2,28 @@
 
 **DyCo-AI Lab · Clemson University · ROS 2 · Python · Windows SSH client**
 
-A small starter for sending a bounded velocity request to a **Unitree Go2 EDU**.
-Connect your laptop by Ethernet, SSH into the robot's **onboard Jetson expansion
-computer**, load its ROS environment, and run one Python script there.
-Windows only needs Git and OpenSSH; ROS runs on the Jetson.
+This starter is primarily for **Windows laptop users who want to SSH into the
+Go2 EDU's onboard Jetson and develop/run Unitree SDK and ROS control directly
+on that computer**. Windows provides the editor, Git, and SSH client; the Jetson
+runs the robot-side Python, ROS, and control software.
+
+The included velocity example uses the **ROS 2 Sport/DDS interface** to request
+bounded motion from the Go2's built-in locomotion controller. The
+[Unitree SDK2 Python interface](https://github.com/unitreerobotics/unitree_sdk2_python)
+is linked below for further SDK-based development; it is not required by this example.
 
 [Setup walkthrough](docs/SETUP.md) · [Identify ROS / JetPack](docs/SOFTWARE.md) ·
 [Optional recording](docs/RECORDING.md) · [Source](go2_walk.py)
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/assets/go2-jetson-ethernet.jpg" alt="Lab Go2 EDU resting on the floor with Ethernet plugged into the rear RJ45 port on its Jetson expansion dock." width="430"><br><strong>Ethernet into the Jetson expansion dock</strong></td>
-    <td align="center"><img src="docs/assets/go2-velocity-demo.gif" alt="Short lab-supplied clip of the Go2 walking on a clear lab floor." width="320"><br><strong>Lab velocity demonstration</strong></td>
-  </tr>
-</table>
+<p align="center">
+  <strong>Ethernet into the Jetson expansion dock</strong><br>
+  <img src="docs/assets/go2-jetson-ethernet.png" alt="Annotated Go2 EDU photograph highlighting the Ethernet connector on the Jetson expansion dock and the cable to the host PC." width="660">
+</p>
 
-The GIF preserves the supplied clip's timing (about 3.1 seconds). It shows motion;
-the exact command and stop sequence are not visible in that clip. Use the command
-and feedback checks below to establish the outcome of your own run.
+<p align="center">
+  <strong>Lab velocity demonstration</strong><br>
+  <img src="docs/assets/go2-velocity-demo.gif" alt="Short lab-supplied clip of the Go2 walking on the lab floor." width="360">
+</p>
 
 ## Understand the connection
 
@@ -139,6 +143,38 @@ The walkthrough describes the known firmware caveats and visual stance check.
 - Go2 Sport interface only. This repository is not a Go1 ROS adapter.
 - Firmware-specific behavior and a first real bag capture still need a recorded qualification check.
 - [Clemson CI simulation labs](https://github.com/sriram-2502/go1-mujoco-playground) and [gesture-navigation reference](https://github.com/sriram-2502/go2-webrtc-gesture-nav) build on the basic robot interfaces; the WebRTC/Wi-Fi path is separate from this SSH/ROS path.
+
+## TODO: Wi-Fi SSH and host-PC RL development
+
+- [ ] **SSH to the Jetson over Wi-Fi:** document the Jetson Wi-Fi interface, network setup, assigned IP, SSH access, and a connection check. The Jetson SSH address must be identified separately from the Go2 WebRTC hotspot endpoint.
+- [ ] **Host-PC RL setup:** add a reproducible GPU workstation environment for simulation, policy training, and evaluation, with tested OS/CUDA/framework versions. Document Windows/WSL or Linux requirements for the chosen framework.
+- [ ] **Simulation-to-hardware workflow:** document training, policy playback, sim-to-sim checks, export, and transfer to the onboard Jetson.
+- [ ] **On-robot policy execution:** add a separate validated runtime and hardware checkout covering observation/action definitions, joint ordering, normalization, control rates, and the required SDK interfaces; update these guidelines with a tested example.
+
+Planned workflow:
+
+```text
+Host PC / GPU workstation              Onboard Jetson                 Go2
+Train → evaluate → sim-to-sim → export → copy policy → run inference → control
+```
+
+The current `go2_walk.py` requests velocity from Unitree's existing locomotion
+controller. Learned-policy execution is future work and uses a separate deployment
+path. Framework links below are references, not installed dependencies or verified
+deployment instructions for this lab robot.
+
+## Useful SDK and robot-learning references
+
+| Resource | What to explore |
+| --- | --- |
+| [Unitree SDK2 Python](https://github.com/unitreerobotics/unitree_sdk2_python) | Official Python interface for SDK-based control development |
+| [RAI Institute — Exploy](https://github.com/rai-opensource/exploy) | Export RL environment/policy logic and deploy with an ONNX Runtime C++ controller; includes Isaac Lab and mjlab integrations |
+| [mjlab](https://github.com/mujocolab/mjlab) | MuJoCo-Warp robot-learning framework with an Isaac Lab-style API |
+| [Unitree RL mjlab](https://github.com/unitreerobotics/unitree_rl_mjlab) | Unitree's MuJoCo/mjlab training and sim-to-real project, including Go2 examples |
+| [Unitree MuJoCo](https://github.com/unitreerobotics/unitree_mujoco) | Official Unitree simulation environment for testing control and deployment workflows |
+
+For Exploy's exporter and controller concepts, see its
+[official documentation](https://pages.rai-inst.com/exploy/).
 
 ## Development and attribution
 

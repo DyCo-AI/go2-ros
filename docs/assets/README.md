@@ -2,14 +2,12 @@
 
 | File | Purpose | Export |
 | --- | --- | --- |
-| `go2-jetson-ethernet.jpg` | Go2 EDU with Ethernet plugged into its Jetson dock | 960 px wide JPEG; metadata stripped |
-| `go2-velocity-demo.gif` | Short lab motion example | 320 px wide, 8 fps, 64-color palette, original timing, looped; no audio |
+| `go2-jetson-ethernet.png` | Annotated Go2 EDU photo showing the Jetson Ethernet connector and cable to the host PC | 1200 px wide PNG, source metadata removed |
+| `go2-velocity-demo.gif` | Short lab motion example | 320 px wide, 8 fps, 64-color palette, looped; no audio |
 | `go2-controller.jpg` | Remote button reference | Existing lab-provided photo |
 
-Original files stay local. These visuals do not record a complete stop test,
-software inventory, requested velocity, or firmware version. Do not infer those
-values from the image or GIF. The read-only inventory and actual trial notes
-are the evidence for those fields.
+Original media remains local. The PNG annotation was supplied by the maintainer;
+the published export keeps the same filename. The motion GIF is unchanged.
 
 FFmpeg filter for the GIF:
 
@@ -17,10 +15,8 @@ FFmpeg filter for the GIF:
 fps=8,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4
 ```
 
-Photo filter: `scale=960:-2:flags=lanczos`, JPEG quality 4. Both exports remove
-source metadata. The source video is not uploaded to Git.
-
-Published export checksums:
+Annotated image export: `scale=1200:-2:flags=lanczos`, PNG compression level 9,
+`-map_metadata -1`. Published export checksums:
 
 ```json
 {
@@ -28,9 +24,9 @@ Published export checksums:
     "bytes": 714280,
     "sha256": "89c287cb0e84ce0c553f3a56f2c74f238c610a0281946032eb23a818b78ca015"
   },
-  "go2-jetson-ethernet.jpg": {
-    "bytes": 163583,
-    "sha256": "4d82e0d273cf16f5e77d35fbbcf63fcf2661f4b0d8091f4f706bafa96e0dbaad"
+  "go2-jetson-ethernet.png": {
+    "bytes": 1503573,
+    "sha256": "bb766dc0976c10e48c84f8bc19ddd67f5c26961abc2b5a4b1eb0f7bf76f963e5"
   },
   "go2-velocity-demo.gif": {
     "bytes": 1932676,

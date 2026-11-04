@@ -73,7 +73,7 @@ Obstacle avoidance is changed manually on the controller, not by the script.
 
 ## 2. Connect Ethernet
 
-![Go2 EDU with an Ethernet cable plugged into the RJ45 connector on the Jetson expansion dock.](assets/go2-jetson-ethernet.jpg)
+![Go2 EDU with an Ethernet cable plugged into the RJ45 connector on the Jetson expansion dock.](assets/go2-jetson-ethernet.png)
 
 The cable and SSH connection access the **onboard Jetson expansion computer**.
 `unitree` is the Linux account name; the ROS node runs on that computer.
