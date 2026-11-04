@@ -1,0 +1,30 @@
+# Private access and local machine configuration
+/private/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+# Recordings and generated data stay local
+/data/
+/logs/
+/recordings/
+*.mp4
+*.webm
+*.zip
+*.bag
+*.db3
+*.db3-shm
+*.db3-wal
+*.mcap
+*.log
+jetson-software*.json
+# Runtime and build artifacts
+__pycache__/
+*.py[cod]
+.venv/
+build/
+install/
+log/
+.DS_Store
+Thumbs.db
