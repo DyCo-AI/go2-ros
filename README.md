@@ -142,7 +142,7 @@ The walkthrough describes the known firmware caveats and visual stance check.
 - Default DDS interface: Jetson `eth0`; default state topic: `/lf/sportmodestate`. Verify these on the assigned robot.
 - Go2 Sport interface only. This repository is not a Go1 ROS adapter.
 - Firmware-specific behavior and a first real bag capture still need a recorded qualification check.
-- [Clemson CI simulation labs](https://github.com/sriram-2502/go1-mujoco-playground) and [gesture-navigation reference](https://github.com/sriram-2502/go2-webrtc-gesture-nav) build on the basic robot interfaces; the WebRTC/Wi-Fi path is separate from this SSH/ROS path.
+- [Clemson CI simulation labs](https://github.com/sriram-2502/go1-mujoco-playground) and [gesture-navigation reference](https://github.com/sriram-2502/go2-webrtc-gesture-nav) build on the basic robot interfaces; the independent [Basic WebRTC/Wi-Fi starter](https://github.com/DyCo-AI/go2-webRTC) covers Windows high-level planning, camera/voxels, and onboard mapping interfaces.
 
 ## TODO: Wi-Fi SSH and host-PC RL development
 
