@@ -147,4 +147,4 @@ Developed by [Sriram Krishnamoorthy](https://github.com/sriram-2502) for the
 robot experiments. This standalone starter preserves the existing Go2 velocity
 script from the instructor setup; its motion behavior is unchanged.
 See [NOTICE.md](NOTICE.md) for sources and media, and [CONTRIBUTING.md](CONTRIBUTING.md)
-for maintenance. A repository-wide license has not yet been selected.
+for maintenance. Released under the [MIT License](LICENSE).

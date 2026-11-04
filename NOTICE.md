@@ -9,4 +9,5 @@
 - Full-resolution originals remain local. Conversion details and hashes are recorded in `docs/assets/README.md`.
 
 Unitree's ROS interfaces and dependencies retain their own licenses; they are
-linked, not vendored here. A repository-wide license has not been selected.
+linked, not vendored here. This starter is released under the root MIT License
+selected by the lab repository owner; third-party notices remain applicable.
